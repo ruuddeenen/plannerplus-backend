@@ -1,5 +1,8 @@
 package com.ruuddeenen.plannerplus;
 
+import com.ruuddeenen.plannerplus.models.Employee;
+import com.ruuddeenen.plannerplus.services.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
