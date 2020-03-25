@@ -2,11 +2,18 @@ package com.ruuddeenen.plannerplus.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public
 class Department implements Serializable {
+
+    public Department() {
+        this.employees = new HashSet<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +23,7 @@ class Department implements Serializable {
 
     @ManyToMany
     @JoinColumn
-    private List<Employee> employees;
+    private Set<Employee> employees;
 
     // Getters & Setters
     public Long getId() {
@@ -33,5 +40,17 @@ class Department implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public boolean removeEmployee(Employee employee) {
+        return employees.remove(employee);
     }
 }

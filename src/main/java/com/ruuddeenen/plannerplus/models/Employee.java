@@ -1,12 +1,7 @@
 package com.ruuddeenen.plannerplus.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Employee implements Serializable {
