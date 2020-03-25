@@ -6,8 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
-@Entity
-class EmployeeShift implements Serializable {
+public class EmployeeShift implements Serializable {
     @Id
     @ManyToOne
     private Shift shift;
@@ -16,6 +15,7 @@ class EmployeeShift implements Serializable {
     @ManyToOne
     private Employee employee;
 
-    @Column(name = "departmentId")
+    @Id
+    @ManyToOne
     private Department department;
 }

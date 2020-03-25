@@ -16,7 +16,7 @@ public class DepartmentServiceUnitTest {
 
     @Test
     public void whenApplicationStarts_thenHibernateCreatesInitialRecords(){
-        List<Department> departmentList = departmentService.list();
+        List<Department> departmentList = departmentService.getAllDepartments();
 
         Assert.assertEquals(5, departmentList.size());
     }

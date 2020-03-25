@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,25 +12,14 @@ import java.util.Set;
 public class Employee implements Serializable {
 
     @Id
-    @JsonProperty
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonProperty
     @Column(nullable = false)
     private String name;
 
-    @JsonProperty
     @Column(nullable = false)
     private String surname;
-
-    @ManyToMany
-    @JoinColumn
-    private List<Department> departments;
-
-    @OneToMany(mappedBy = "employee")
-    private Set<EmployeeShift> employeeShifts;
-
 
     public Long getId() {
         return id;
@@ -37,5 +27,21 @@ public class Employee implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

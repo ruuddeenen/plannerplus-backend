@@ -2,27 +2,25 @@ package com.ruuddeenen.plannerplus.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
-public
-class Shift implements Serializable {
+@IdClass(ShiftKey.class)
+public class Shift implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long id;
+    private Employee employee;
 
-    @Column(nullable = false)
-    private Date day;
+    @Id
+    private Department department;
 
-    @Column(nullable = false)
-    private int startTime;
+    @Id
+    private Date date;
 
-    @Column(nullable = false)
-    private int endTime;
+    private Time startTime;
 
+    private Time endTime;
 
-    @OneToMany(mappedBy = "shift", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<EmployeeShift> employeeShifts;
+    public Shift() {
+    }
 }

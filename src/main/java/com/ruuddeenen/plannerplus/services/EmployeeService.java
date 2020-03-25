@@ -1,6 +1,7 @@
 package com.ruuddeenen.plannerplus.services;
 
 import com.ruuddeenen.plannerplus.exceptions.RecordNotFoundException;
+import com.ruuddeenen.plannerplus.models.Department;
 import com.ruuddeenen.plannerplus.models.Employee;
 import com.ruuddeenen.plannerplus.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,20 @@ public class EmployeeService {
             entity = repository.save(entity);
             return entity;
         } else {
-            Employee newEmployee = entity;
+            Employee updated = entity;
             // todo update employee
-            return newEmployee;
+            return updated;
         }
     }
+/*
+    public List<Employee> getAllByDepartments(List<Department> departments) throws RecordNotFoundException {
+        List<Employee> employeeList = repository.getAllByDepartments(departments);
+        if (employeeList.size() > 0){
+            return employeeList;
+        } else {
+            throw new RecordNotFoundException("No employee records exist for the given department(s)");
+        }
+    }
+
+ */
 }
