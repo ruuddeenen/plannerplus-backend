@@ -66,8 +66,7 @@ public class DepartmentService {
         if (optional.isPresent()){
             Department department = optional.get();
             department.removeEmployee(employee);
-            department = repository.save(department);
-            return department;
+            return repository.save(department);
         } else {
             throw recordNotFoundException;
         }

@@ -1,14 +1,21 @@
 package com.ruuddeenen.plannerplus.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class Employee implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    public Employee() {
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    // @GeneratedValue(generator = "UUID")
+    // @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String uuid;
 
     @Column(nullable = false)
     private String name;
@@ -16,12 +23,62 @@ public class Employee implements Serializable {
     @Column(nullable = false)
     private String surname;
 
-    public Long getId() {
-        return id;
+    private String email;
+
+    private String phone;
+
+    private int gender;
+
+    private String place;
+
+    private String bio;
+
+    public String getPhone() {
+        return phone;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {

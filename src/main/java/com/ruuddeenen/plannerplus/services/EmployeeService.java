@@ -1,9 +1,10 @@
 package com.ruuddeenen.plannerplus.services;
 
 import com.ruuddeenen.plannerplus.exceptions.RecordNotFoundException;
-import com.ruuddeenen.plannerplus.models.Department;
 import com.ruuddeenen.plannerplus.models.Employee;
+import com.ruuddeenen.plannerplus.models.Shift;
 import com.ruuddeenen.plannerplus.repositories.EmployeeRepository;
+import com.ruuddeenen.plannerplus.repositories.ShiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +17,22 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepository repository;
+    @Autowired
+    private ShiftRepository shiftRepository;
+    private RecordNotFoundException recordNotFoundException = new RecordNotFoundException("No employee record exist for the given id");
 
     public List<Employee> getAllEmployees() {
         List<Employee> employeeList = repository.findAll();
         if (employeeList.size() > 0) {
             return employeeList;
-        } else {
-            return new ArrayList<>();
-        }
+        } else return new ArrayList<>();
     }
 
-    public Employee getEmployeeById(Long id) throws RecordNotFoundException {
+    public Employee getEmployeeById(String id) throws RecordNotFoundException {
         return repository.findById(id).orElseThrow(() -> new RecordNotFoundException("No employee record exist for the given id"));
     }
 
-    public void deleteEmployeeById(Long id) throws RecordNotFoundException {
+    public void deleteEmployeeById(String id) throws RecordNotFoundException {
         Optional<Employee> employee = repository.findById(id);
 
         if (employee.isPresent()) {
@@ -41,14 +43,15 @@ public class EmployeeService {
     }
 
     public Employee createOrUpdate(Employee entity) {
-        if (entity.getId() == null) {
-            entity = repository.save(entity);
-            return entity;
-        } else {
-            Employee updated = entity;
-            // todo update employee
-            return updated;
-        }
+        entity = repository.save(entity);
+        return entity;
+    }
+
+    public Employee addShift(String id, Shift shift) throws RecordNotFoundException {
+        // todo
+        Employee employee = repository.findById(id).orElseThrow(() -> recordNotFoundException);
+        employee = repository.save(employee);
+        return employee;
     }
 /*
     public List<Employee> getAllByDepartments(List<Department> departments) throws RecordNotFoundException {

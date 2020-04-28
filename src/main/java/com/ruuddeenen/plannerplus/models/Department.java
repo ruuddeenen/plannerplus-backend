@@ -2,14 +2,13 @@ package com.ruuddeenen.plannerplus.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 public
 class Department implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public Department() {
         this.employees = new HashSet<>();
@@ -25,7 +24,9 @@ class Department implements Serializable {
     @JoinColumn
     private Set<Employee> employees;
 
-    // Getters & Setters
+
+    // Getters and setters
+
     public Long getId() {
         return id;
     }
@@ -50,7 +51,7 @@ class Department implements Serializable {
         employees.add(employee);
     }
 
-    public boolean removeEmployee(Employee employee) {
-        return employees.remove(employee);
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
     }
 }

@@ -35,14 +35,20 @@ public class DepartmentController {
     }
 
     @PostMapping("/{id}/add")
-    public ResponseEntity<Department> addEmployee(@PathVariable Long id, @RequestParam Long employeeId) throws RecordNotFoundException {
+    public ResponseEntity<Department> addEmployee(
+            @PathVariable Long id,
+            @RequestParam String employeeId
+    ) throws RecordNotFoundException {
         Employee employee = employeeService.getEmployeeById(employeeId);
         Department updated = service.addEmployeeToDepartment(employee, id);
         return new ResponseEntity<>(updated, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}/remove")
-    public ResponseEntity<Department> removeEmployee(@PathVariable Long id, @RequestParam Long employeeId) throws RecordNotFoundException {
+    public ResponseEntity<Department> removeEmployee(
+            @PathVariable Long id,
+            @RequestParam String employeeId
+    ) throws RecordNotFoundException {
         Employee employee = employeeService.getEmployeeById(employeeId);
         Department updated = service.removeEmployeeFromDepartment(employee, id);
         return new ResponseEntity<>(updated, new HttpHeaders(), HttpStatus.OK);
@@ -57,7 +63,9 @@ public class DepartmentController {
 
 
     @DeleteMapping("/{id}")
-    public HttpStatus deleteDepartmentById(@PathVariable("id") Long id) throws RecordNotFoundException {
+    public HttpStatus deleteDepartmentById(
+            @PathVariable("id") Long id
+    ) throws RecordNotFoundException {
         service.deleteDepartmentById(id);
         return HttpStatus.FORBIDDEN;
     }
