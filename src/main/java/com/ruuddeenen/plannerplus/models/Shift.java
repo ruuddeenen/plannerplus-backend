@@ -2,6 +2,8 @@ package com.ruuddeenen.plannerplus.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 public class Shift implements Serializable {
@@ -14,11 +16,23 @@ public class Shift implements Serializable {
     @JoinColumn
     private Employee employee;
 
-    private String date;
+    private Date date;
 
-    private String startTime;
+    private Time startTime;
 
-    private String endTime;
+    private Time endTime;
+
+    @ManyToOne
+    @JoinColumn
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public Shift() {
     }
@@ -39,27 +53,27 @@ public class Shift implements Serializable {
         this.employee = employee;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 }

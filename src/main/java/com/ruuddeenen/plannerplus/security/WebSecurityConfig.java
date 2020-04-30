@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import java.util.Arrays;
 
@@ -38,9 +40,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return tokenFilter;
     }
 
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall(){
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedDoubleSlash(true);
+        return firewall;
+    }
+
     @Override
     public void configure(WebSecurity webSecurity) {
         webSecurity.ignoring().antMatchers(HttpMethod.OPTIONS);
+        webSecurity.httpFirewall(allowUrlEncodedSlashHttpFirewall());
     }
 
     @Override
@@ -51,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/auth/**").authenticated()
+                .antMatchers("/api/**").authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

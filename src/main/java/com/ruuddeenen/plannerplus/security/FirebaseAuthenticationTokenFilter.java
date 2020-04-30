@@ -17,7 +17,7 @@ public class FirebaseAuthenticationTokenFilter extends AbstractAuthenticationPro
     private final static String TOKEN_HEADER = "X-Firebase-Auth";
 
     public FirebaseAuthenticationTokenFilter() {
-        super("/**");
+        super("/api/**");
     }
 
 
@@ -25,7 +25,7 @@ public class FirebaseAuthenticationTokenFilter extends AbstractAuthenticationPro
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         final String authToken = request.getHeader(TOKEN_HEADER);
         if (Strings.isNullOrEmpty(authToken)){
-            throw new RuntimeException("Invalid auth token!");
+            throw new RuntimeException("Invalid auth token is empty or null");
         }
         return getAuthenticationManager().authenticate(new FirebaseAuthToken(authToken));
     }
