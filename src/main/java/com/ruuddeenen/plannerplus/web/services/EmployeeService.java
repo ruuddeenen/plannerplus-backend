@@ -1,10 +1,10 @@
-package com.ruuddeenen.plannerplus.services;
+package com.ruuddeenen.plannerplus.web.services;
 
-import com.ruuddeenen.plannerplus.exceptions.RecordNotFoundException;
-import com.ruuddeenen.plannerplus.models.Employee;
-import com.ruuddeenen.plannerplus.models.Shift;
-import com.ruuddeenen.plannerplus.repositories.EmployeeRepository;
-import com.ruuddeenen.plannerplus.repositories.ShiftRepository;
+import com.ruuddeenen.plannerplus.web.exceptions.RecordNotFoundException;
+import com.ruuddeenen.plannerplus.web.models.Employee;
+import com.ruuddeenen.plannerplus.web.models.Shift;
+import com.ruuddeenen.plannerplus.web.repositories.EmployeeRepository;
+import com.ruuddeenen.plannerplus.web.repositories.ShiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +32,12 @@ public class EmployeeService {
         return repository.findById(id).orElseThrow(() -> new RecordNotFoundException("No employee record exist for the given id"));
     }
 
-    public void deleteEmployeeById(String id) throws RecordNotFoundException {
+    public boolean deleteEmployeeById(String id) throws RecordNotFoundException {
         Optional<Employee> employee = repository.findById(id);
 
         if (employee.isPresent()) {
             repository.deleteById(id);
+            return true;
         } else {
             throw new RecordNotFoundException("No employee record exist for the given id");
         }

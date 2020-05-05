@@ -1,4 +1,4 @@
-package com.ruuddeenen.plannerplus.models;
+package com.ruuddeenen.plannerplus.web.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

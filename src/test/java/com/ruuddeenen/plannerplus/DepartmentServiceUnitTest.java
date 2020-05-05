@@ -1,7 +1,7 @@
 package com.ruuddeenen.plannerplus;
 
-import com.ruuddeenen.plannerplus.models.Department;
-import com.ruuddeenen.plannerplus.services.DepartmentService;
+import com.ruuddeenen.plannerplus.web.models.Department;
+import com.ruuddeenen.plannerplus.web.services.DepartmentService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.ruuddeenen.plannerplus.exceptions;
+package com.ruuddeenen.plannerplus.web.exceptions;
 
 public class TimeOutOfRangeException extends Exception {
     public TimeOutOfRangeException(String message){

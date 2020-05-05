@@ -1,6 +1,6 @@
-package com.ruuddeenen.plannerplus.repositories;
+package com.ruuddeenen.plannerplus.web.repositories;
 
-import com.ruuddeenen.plannerplus.models.Department;
+import com.ruuddeenen.plannerplus.web.models.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

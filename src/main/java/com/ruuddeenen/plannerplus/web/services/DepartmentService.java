@@ -1,9 +1,9 @@
-package com.ruuddeenen.plannerplus.services;
+package com.ruuddeenen.plannerplus.web.services;
 
-import com.ruuddeenen.plannerplus.exceptions.RecordNotFoundException;
-import com.ruuddeenen.plannerplus.models.Department;
-import com.ruuddeenen.plannerplus.models.Employee;
-import com.ruuddeenen.plannerplus.repositories.DepartmentRepository;
+import com.ruuddeenen.plannerplus.web.exceptions.RecordNotFoundException;
+import com.ruuddeenen.plannerplus.web.models.Department;
+import com.ruuddeenen.plannerplus.web.models.Employee;
+import com.ruuddeenen.plannerplus.web.repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
