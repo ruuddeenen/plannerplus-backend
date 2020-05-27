@@ -1,4 +1,7 @@
 version: 2.1 # use CircleCI 2.0
+orbs:
+  heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+  
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     
@@ -28,3 +31,14 @@ jobs: # a collection of steps
       # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples    
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
