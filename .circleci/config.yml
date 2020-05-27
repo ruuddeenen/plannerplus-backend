@@ -1,6 +1,7 @@
 version: 2.1 # use CircleCI 2.0
+
 orbs:
-  heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+  heroku: circleci/heroku@1.0.1 # Invoke the Heroku orb
   
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
